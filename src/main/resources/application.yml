@@ -1,0 +1,13 @@
+server:
+  port: 8023
+spring:
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+    # 确认消息发送到交换机上
+    publisher-confirm-type: correlated
+    # 确认消息已发送到队列
+    publisher-returns: true
+
