@@ -1,5 +1,6 @@
 package com.example.myrabbitmq.controller;
 
+import com.example.myrabbitmq.send.CancelOrderSender;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,6 +20,9 @@ public class sendMessageController {
      */
     @Autowired
     private RabbitTemplate rabbitTemplate;
+
+    @Autowired
+    private CancelOrderSender cancelOrderSender;
 
     @GetMapping("/sendDirectMessage")
     public String sendDirectMessage() {
@@ -78,5 +82,10 @@ public class sendMessageController {
             return "send TopicMessage2";
     }
 
+    @GetMapping("/sendCancelMessage")
+    public String sendCancelMessage() {
+        cancelOrderSender.sendMessage(1L);
+        return "send 延迟消息";
+    }
 
 }
